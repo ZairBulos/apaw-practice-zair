@@ -3,11 +3,6 @@
 ## Arquitectura y Patrones para Aplicaciones Web (APAW)
 > Este proyecto es un apoyo docente de la asignatura y un ejemplo práctico del desarrollo de una aplicación Web siguiendo una Arquitectura por capas
 
-### Estado del código
-
-[![DevOps](https://github.com/ZairBulos/apaw-practice-zair/actions/workflows/test-sonar.yml/badge.svg)](https://github.com/ZairBulos/apaw-practice-zair/actions/workflows/test-sonar.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=zair-bulos_apaw-practice-zair&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=zair-bulos_apaw-practice-zair)
-
 ### Tecnologías necesarias
 
 `Java` `Maven` `GitHub` `Sonarcloud` `Spring-boot` `OpenAPI`
@@ -25,4 +20,5 @@
    1. **Next** … **Finish**.
 
 ### :book: Más información...
+
 * [github.com/miw-upm/apaw](https://github.com/miw-upm/apaw)   
