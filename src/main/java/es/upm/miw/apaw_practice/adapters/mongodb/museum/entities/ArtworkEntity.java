@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.museum.Artwork;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,6 +30,12 @@ public class ArtworkEntity {
         this.title = title;
         this.image = image;
         this.inventoryNumber = inventoryNumber;
+    }
+
+    public Artwork toArtwork() {
+        Artwork artwork = new Artwork();
+        BeanUtils.copyProperties(this, artwork);
+        return artwork;
     }
 
     public String getId() {
