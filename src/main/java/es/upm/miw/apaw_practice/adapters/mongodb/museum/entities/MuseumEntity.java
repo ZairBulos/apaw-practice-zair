@@ -1,10 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.museum.Artist;
+import es.upm.miw.apaw_practice.domain.models.museum.Exhibition;
+import es.upm.miw.apaw_practice.domain.models.museum.Museum;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Document
@@ -35,6 +40,24 @@ public class MuseumEntity {
         this.isOpened = isOpened;
         this.artists = artists;
         this.exhibitions = exhibitions;
+    }
+
+    public Museum toMuseum() {
+        Museum museum = new Museum();
+        BeanUtils.copyProperties(this, museum);
+        museum.setExhibitions(this.exhibitions.stream()
+                .filter(Objects::nonNull)
+                .map(ExhibitionEntity::toExhibition)
+                .toList());
+        return museum;
+    }
+
+    public void fromMuseum(Museum museum) {
+        BeanUtils.copyProperties(museum, this);
+        this.exhibitions = museum.getExhibitions().stream()
+                .filter(Objects::nonNull)
+                .map(ExhibitionEntity::new)
+                .toList();
     }
 
     public String getId() {
