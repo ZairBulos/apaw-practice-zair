@@ -4,4 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MuseumPersistence {
+    void delete(String name);
 }
