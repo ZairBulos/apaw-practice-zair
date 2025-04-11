@@ -19,4 +19,12 @@ public class ArtworkService {
     public Stream<Artwork> readAll() {
         return this.artworkPersistence.readAll();
     }
+
+    public Artwork update(Long inventoryNumber, Artwork artwork) {
+        Artwork artworkDB = this.artworkPersistence.read(inventoryNumber);
+        artworkDB.setTitle(artwork.getTitle());
+        artworkDB.setImage(artwork.getImage());
+
+        return this.artworkPersistence.update(artworkDB);
+    }
 }

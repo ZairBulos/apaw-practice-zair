@@ -3,9 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.museum;
 import es.upm.miw.apaw_practice.domain.models.museum.Artwork;
 import es.upm.miw.apaw_practice.domain.services.museum.ArtworkService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -25,5 +23,10 @@ public class ArtworkResource {
     public Stream<BasicArtworkDTO> readAll() {
         return this.artworkService.readAll()
                 .map(BasicArtworkDTO::new);
+    }
+
+    @PutMapping("/{inventoryNumber}")
+    public Artwork update(@PathVariable Long inventoryNumber, @RequestBody Artwork artwork) {
+        return this.artworkService.update(inventoryNumber, artwork);
     }
 }

@@ -9,6 +9,12 @@ public class Artwork {
         // empty for framework
     }
 
+    public Artwork(Long inventoryNumber, String title, String image) {
+        this.inventoryNumber = inventoryNumber;
+        this.title = title;
+        this.image = image;
+    }
+
     public String getTitle() {
         return title;
     }

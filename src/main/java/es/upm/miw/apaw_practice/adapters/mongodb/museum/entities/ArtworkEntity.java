@@ -38,6 +38,10 @@ public class ArtworkEntity {
         return artwork;
     }
 
+    public void fromArtwork(Artwork artwork) {
+        BeanUtils.copyProperties(artwork, this);
+    }
+
     public String getId() {
         return id;
     }
