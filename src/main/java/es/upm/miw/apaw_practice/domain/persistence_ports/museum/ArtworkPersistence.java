@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface ArtworkPersistence {
     Stream<Artwork> readAll();
+    Artwork read(Long inventoryNumber);
+    Artwork update(Artwork artwork);
 }
