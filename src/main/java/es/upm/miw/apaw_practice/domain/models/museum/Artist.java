@@ -12,6 +12,13 @@ public class Artist {
         // empty for framework
     }
 
+    public Artist(String name, String nationality, String mainTechnique, List<Artwork> artworks) {
+        this.name = name;
+        this.nationality = nationality;
+        this.mainTechnique = mainTechnique;
+        this.artworks = artworks;
+    }
+
     public String getName() {
         return name;
     }
