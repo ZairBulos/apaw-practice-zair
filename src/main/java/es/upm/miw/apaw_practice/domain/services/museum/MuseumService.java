@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.museum;
 
+import es.upm.miw.apaw_practice.domain.models.museum.Exhibition;
 import es.upm.miw.apaw_practice.domain.models.museum.Museum;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.MuseumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,13 @@ public class MuseumService {
                 .forEach(exhibition -> exhibition.setGeneralAdmissionFee(admissionFee));
 
         this.museumPersistence.updateExhibitionAdmissionFee(museum);
+    }
+
+    public BigDecimal findTotalAdmissionFee(String name) {
+        return this.museumPersistence.readByName(name)
+                .getExhibitions()
+                .stream()
+                .map(Exhibition::getGeneralAdmissionFee)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
