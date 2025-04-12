@@ -12,6 +12,12 @@ public class Exhibition {
         // empty for framework
     }
 
+    public Exhibition(String title, LocalDate startDate, BigDecimal generalAdmissionFee) {
+        this.title = title;
+        this.startDate = startDate;
+        this.generalAdmissionFee = generalAdmissionFee;
+    }
+
     public String getTitle() {
         return title;
     }
