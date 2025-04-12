@@ -7,6 +7,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtistPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("artistPersistence")
 public class ArtistPersistenceMongodb implements ArtistPersistence {
     private final ArtistRepository artistRepository;
@@ -14,6 +16,11 @@ public class ArtistPersistenceMongodb implements ArtistPersistence {
     @Autowired
     public ArtistPersistenceMongodb(ArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
+    }
+
+    @Override
+    public Stream<Artist> findByTechnique(String technique) {
+        return this.artistRepository.findByMainTechniqueIgnoreCase(technique).map(ArtistEntity::toArtist);
     }
 
     @Override

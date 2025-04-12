@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtistPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class ArtistService {
     private final ArtistPersistence artistPersistence;
@@ -24,5 +26,9 @@ public class ArtistService {
         if (this.artistPersistence.existArtist(artistName)) {
             throw new ConflictException("Artist exist: " + artistName);
         }
+    }
+
+    public Stream<Artist> findByTechnique(String technique) {
+        return this.artistPersistence.findByTechnique(technique);
     }
 }
