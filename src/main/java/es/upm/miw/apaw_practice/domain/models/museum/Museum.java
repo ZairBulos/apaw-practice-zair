@@ -8,6 +8,7 @@ public class Museum {
     private Boolean isOpened;
     private List<Exhibition> exhibitions;
     private List<Artist> artists;
+    private MuseumPublisher<Boolean> publisher = new MuseumPublisher<>();
 
     public Museum() {
         // empty for framework
@@ -35,6 +36,7 @@ public class Museum {
 
     public void setOpened(Boolean opened) {
         isOpened = opened;
+        this.publisher.next(opened);
     }
 
     public List<Exhibition> getExhibitions() {
@@ -51,6 +53,14 @@ public class Museum {
 
     public void setArtists(List<Artist> artists) {
         this.artists = artists;
+    }
+
+    public MuseumPublisher<Boolean> getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(MuseumPublisher<Boolean> publisher) {
+        this.publisher = publisher;
     }
 
     @Override
