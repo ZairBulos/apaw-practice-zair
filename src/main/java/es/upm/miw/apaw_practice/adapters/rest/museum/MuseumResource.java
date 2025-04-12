@@ -19,6 +19,11 @@ public class MuseumResource {
         this.museumService = museumService;
     }
 
+    @GetMapping("/search/{name}")
+    public BigDecimal findTotalAdmissionFee(@PathVariable String name) {
+        return this.museumService.findTotalAdmissionFee(name);
+    }
+
     @PatchMapping("/{name}/exhibitions")
     public void updateExhibitionAdmissionFee(@PathVariable String name, @RequestBody BigDecimal admissionFee) {
         this.museumService.updateExhibitionAdmissionFee(name, admissionFee);
