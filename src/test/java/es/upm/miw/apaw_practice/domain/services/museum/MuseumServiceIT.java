@@ -26,4 +26,10 @@ class MuseumServiceIT {
             assertEquals(newAdmissionFee, exhibition.getGeneralAdmissionFee())
         );
     }
+
+    @Test
+    void testFindTotalAdmissionFee() {
+        BigDecimal result = this.museumService.findTotalAdmissionFee("Van Gogh Museum");
+        assertEquals(BigDecimal.valueOf(104.99), result);
+    }
 }

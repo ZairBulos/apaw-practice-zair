@@ -8,6 +8,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 class MuseumResourceIT {
@@ -33,5 +37,16 @@ class MuseumResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Museum.class);
+    }
+
+    @Test
+    void testSearch() {
+        this.webTestClient
+                .get()
+                .uri(MuseumResource.MUSEUMS + "/search/{name}", "The Prado Museum")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigInteger.class)
+                .value(resultData -> assertEquals(BigDecimal.valueOf(20.00), new BigDecimal(resultData).setScale(1)));
     }
 }
