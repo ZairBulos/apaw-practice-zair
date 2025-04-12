@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @RestTestConfig
 class ArtistResourceIT {
 
@@ -37,5 +39,22 @@ class ArtistResourceIT {
                 .body(BodyInserters.fromValue(artist))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void findSearch() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(ArtistResource.ARTISTS + "/search")
+                        .queryParam("q", "technique:expressionism")
+                        .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Artist.class)
+                .value(artistsData -> {
+                    artistsData.forEach(artist -> assertEquals("Expressionism", artist.getMainTechnique()));
+                });
     }
 }
