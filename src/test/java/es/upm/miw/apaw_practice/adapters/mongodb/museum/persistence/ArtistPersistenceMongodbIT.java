@@ -35,4 +35,9 @@ class ArtistPersistenceMongodbIT {
     void testArtistNotExists() {
         assertFalse(this.artistPersistence.existArtist("Frida Kahlo"));
     }
+
+    @Test
+    void testFindByTechnique() {
+        assertTrue(this.artistPersistence.findByTechnique("Grisaille").toList().isEmpty());
+    }
 }
